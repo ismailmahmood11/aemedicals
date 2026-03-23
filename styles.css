@@ -350,7 +350,10 @@ body {
 }
 
 .hero-actions {
-  display: none; /* matches your reference (only nav actions visible) */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 4px;
 }
 
 .btn {

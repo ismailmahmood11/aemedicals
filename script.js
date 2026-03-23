@@ -247,7 +247,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 /* ----- Contact form ----- */
 const contactForm = document.getElementById('contact-form');
-contactForm?.addEventListener('submit', function (e) {
+contactForm?.addEventListener('submit', async function (e) {
   e.preventDefault();
   const btn = this.querySelector('.btn-submit');
   const originalText = btn?.textContent;
@@ -255,21 +255,34 @@ contactForm?.addEventListener('submit', function (e) {
     btn.textContent = 'Sending…';
     btn.disabled = true;
   }
-  // No backend: simulate send, then reset
-  setTimeout(() => {
+  try {
+    const res = await fetch(this.action, {
+      method: 'POST',
+      body: new FormData(this),
+      headers: { Accept: 'application/json' }
+    });
+    const data = await res.json();
+    if (data.ok) {
     if (btn) {
       btn.textContent = 'Thanks — we’ll be in touch!';
       btn.style.background = 'var(--accent)';
     }
     this.reset();
-    setTimeout(() => {
+    } else {
+      throw new Error(data.error || 'Something went wrong');
+    }
+  } catch (err) {
+    if (btn) {
+      btn.textContent = 'Try again or email us directly';
+    }
+  }
+  setTimeout(() => {
       if (btn) {
         btn.textContent = originalText;
         btn.disabled = false;
         btn.style.background = '';
       }
     }, 3000);
-  }, 800);
 });
 
 /* ----- Reduce motion preference ----- */

@@ -310,7 +310,9 @@
           <p class="section-lead reveal-text">We’d love to hear from you. Drop us a line and we’ll get back soon.</p>
         </div>
         <div class="contact-wrap">
-          <form class="contact-form reveal-text" id="contact-form" action="#" method="post">
+          <!-- Replace your-form-id with your Formspree form ID from formspree.io (free signup) -->
+          <form class="contact-form reveal-text" id="contact-form" action="https://formspree.io/f/your-form-id" method="POST">
+            <input type="hidden" name="_subject" value="AE Medicals - New Contact Form Submission" />
             <div class="form-row">
               <label for="name">Name</label>
               <input type="text" id="name" name="name" placeholder="Your name" required />
