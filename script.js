@@ -2,7 +2,6 @@
 gsap.registerPlugin(ScrollTrigger);
 
 /* ----- Hero timeline ----- */
-const heroLabel = document.querySelector('.hero-label');
 const heroLines = document.querySelectorAll('.hero-title .line');
 const heroDesc = document.querySelector('.hero-desc');
 const heroActions = document.querySelector('.hero-actions');
@@ -25,9 +24,7 @@ function wrapWords(el) {
 const tlHero = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
 tlHero
-  .fromTo(heroLabel, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6 })
-  .fromTo(heroLines[0], { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.8 }, '-=0.3')
-  .fromTo(heroLines[1], { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.8 }, '-=0.5')
+  .fromTo(heroLines[0], { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.8 })
   .fromTo(heroDesc, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.7 }, '-=0.4')
   .fromTo(heroActions, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6 }, '-=0.3');
 

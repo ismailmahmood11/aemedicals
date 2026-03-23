@@ -325,9 +325,20 @@ body {
   text-transform: uppercase;
   margin-bottom: 18px;
   color: rgba(255, 255, 255, 0.96);
+  width: 100%;
 }
 
-.hero-title .line { display: block; }
+/* Hero title uses full hero-inner width on tablet/desktop; phone keeps constrained flow */
+@media (min-width: 769px) {
+  .hero-content {
+    max-width: none;
+  }
+  .hero-title .line {
+    display: block;
+    width: 100%;
+  }
+}
+
 
 .hero-desc {
   font-size: 1rem;
@@ -891,6 +902,16 @@ body {
   margin-bottom: 20px;
   max-width: 720px;
 }
+
+.philosophy-sub {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-top: 28px;
+  margin-bottom: 10px;
+}
+
+.philosophy-sub:first-of-type { margin-top: 0; }
 
 .philosophy-content strong { color: var(--accent); }
 
