@@ -261,15 +261,16 @@ contactForm?.addEventListener('submit', async function (e) {
       body: new FormData(this),
       headers: { Accept: 'application/json' }
     });
-    const data = await res.json();
-    if (data.ok) {
+    const data = await res.json().catch(() => ({}));
+    const success = res.ok && (data.ok === true || data.success === true || !data.error);
+    if (success) {
     if (btn) {
       btn.textContent = 'Thanks — we’ll be in touch!';
       btn.style.background = 'var(--accent)';
     }
     this.reset();
     } else {
-      throw new Error(data.error || 'Something went wrong');
+      throw new Error(data.error || data.message || 'Something went wrong');
     }
   } catch (err) {
     if (btn) {
